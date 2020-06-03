@@ -1,11 +1,12 @@
-import logging
-
 from aiohttp import web
 
 from data_schemes import AssetDataSchema, CoinDataSchema, ValidationError
 from db_utils import get_all_assets, get_all_coins
 from config import PROJECT_NAME, API_V1_ADDRESS
+from decorators import *
+from aiohttp.web import HTTPBadRequest
 
+from data_transfer_classes import EmptyRequest, IsAliveResponse
 
 routes = web.RouteTableDef()
 
@@ -19,6 +20,13 @@ def json_view(func):
 @routes.get('/')
 async def index(request):
     return web.Response(text=f"Welcome to {PROJECT_NAME}")
+
+
+@routes.post('/is_alive')
+@errors_map({InvalidJSON: HTTPBadRequest, InvalidJSONType: HTTPBadRequest})
+@dto_validate(EmptyRequest)
+async def is_alive_view(request, dto):
+    return IsAliveResponse(is_alive=True)
 
 
 @routes.get(f'{API_V1_ADDRESS}/assets/')
