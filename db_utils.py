@@ -2,7 +2,7 @@ import logging
 
 from aiopg.sa import SAConnection as SAConn
 from sqlalchemy.orm.query import Query
-from sqlalchemy.sql import insert
+from sqlalchemy.sql import insert, delete
 from models import Asset, Coin
 
 
@@ -32,3 +32,11 @@ async def add_coin(conn: SAConn, **coin_data):
         await conn.execute(ins)
     except Exception as ex:
         logging.debug(ex)
+
+
+async def delete_asset(conn: SAConn, asset_name):
+    await conn.execute(delete(Asset).where(Asset.name == asset_name))
+
+
+async def delete_coin(conn: SAConn, coin_name):
+    await conn.execute(delete(Coin).where(Coin.name == coin_name))
