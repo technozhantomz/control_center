@@ -1,7 +1,19 @@
 # Gateways API
 REST API for BitShares blockchain gateway
 
-## Download
+[![License]][LICENSE.md]
+[![Telegram]][Telegram join]
+
+REST API for BitShares gateways between [Booker] and [BitSharesUI]
+
+## Install
+
+Install git, Docker, Docker Compose:
+```bash
+sudo apt install git docker.io docker-compose
+```
+
+Clone the repository & setup configs
 ```shell script
 git clone https://github.com/fincubator/gateways_api
 cd gateways_api/
@@ -12,9 +24,10 @@ if you want to use your own PostgreSQL connection data, you need to change:
 * `config/config.yml`
 * *postgres:environment* in `docker-compose.yml`
 
-### Build & Run via Docker
+
+Start the services by running the command:
 ```shell script
-$ sudo docker-compose up -d --build
+$ sudo docker-compose up
 ```
 
 
@@ -46,3 +59,13 @@ Go to http://0.0.0.0:8080/api/v1/assets/ and check it out:
   }
 }
 ```
+
+[License]: https://img.shields.io/github/license/fincubator/control_center
+[LICENSE.md]: LICENSE
+[CONTRIBUTING.md]: CONTRIBUTING.md
+[Telegram]: https://img.shields.io/badge/Telegram-fincubator-blue?logo=telegram
+[Telegram join]: https://t.me/fincubator
+[Docker]: https://www.docker.com
+[Docker Compose]: https://www.docker.com
+[Booker]: https://github.com/fincubator/booker
+[BitSharesUI]: https://github.com/bitshares/bitshares-ui
