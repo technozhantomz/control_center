@@ -32,13 +32,6 @@ Start the services by running the command:
 $ sudo docker-compose up --build
 ```
 
-
-# Contributing
-You can help by working on opened issues, fixing bugs, creating new features or
-improving documentation.
-
-Before contributing, please read [CONTRIBUTING.md] first.
-
 # License
 Control Center is released under the GNU Affero General Public License v3.0. See
 [LICENSE.md] for the full licensing condition
