@@ -4,6 +4,4 @@
 .idea
 venv/
 
-config/config.yml
-docker-compose.yml
-alembic.ini
+*.env
