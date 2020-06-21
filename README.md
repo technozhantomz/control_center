@@ -1,67 +1,51 @@
 # Gateways API
 REST API for BitShares blockchain gateway
 
-[![License]][LICENSE.md]
+[![License]][LICENSE]
 [![Telegram]][Telegram join]
+![build](https://github.com/fincubator/control_center/workflows/build/badge.svg)
+[![Code style: black]][black code style]
 
-REST API for BitShares gateways between [Booker] and [BitSharesUI]
+REST API for BitShares gateways system between [Booker] and [BitSharesUI]
 
 ## Install
+### Linux (Ubuntu 18.04)
+#### Install with Docker
+##### Requirements
+* [Docker]
+* [Docker Compose]
 
-Install git, Docker, Docker Compose:
-```bash
-sudo apt install git docker.io docker-compose
-```
-
-Clone the repository & setup configs
+Install dependencies
 ```shell script
-git clone https://github.com/fincubator/gateways_api
-cd gateways_api/
-cp config/config.yml.example config/config.yml && cp docker-compose.yml.example docker-compose.yml && cp alembic.ini.example alembic.ini
+$ sudo apt install git docker.io docker-compose
 ```
 
-if you want to use your own PostgreSQL connection data, you need to change:
-* `config/config.yml`
-* *postgres:environment* in `docker-compose.yml`
-
+Clone the repository:
+```shell script
+$ git clone https://github.com/fincubator/control_center
+$ cd control_center/
+$ cp .env.example .env
+```
 
 Start the services by running the command:
 ```shell script
-$ sudo docker-compose up
+$ sudo docker-compose up --build
 ```
 
 
-Go to http://0.0.0.0:8080/api/v1/assets/ and check it out:
+# Contributing
+You can help by working on opened issues, fixing bugs, creating new features or
+improving documentation.
 
-`curl http://0.0.0.0:8080/api/v1/assets/`
+Before contributing, please read [CONTRIBUTING.md] first.
 
-```json
-{
-  "BTC": {
-    "name": "Bitcoin",
-    "unified_cryptoasset_id": "1",
-    "can_deposit": "true",
-    "can_withdraw": "true",
-    "min_withdraw": "0.0018",
-    "max_withdraw": "1000.0",
-    "maker_fee": "0.1",
-    "taker_fee": "0.1"
-  },
-  "USDT": {
-    "name": "Tether",
-    "unified_cryptoasset_id": "825",
-    "can_deposit": "true",
-    "can_withdraw": "true",
-    "min_withdraw": "5.0",
-    "max_withdraw": "100000.0",
-    "maker_fee": "0.1",
-    "taker_fee": "0.1"
-  }
-}
-```
+# License
+Control Center is released under the GNU Affero General Public License v3.0. See
+[LICENSE.md] for the full licensing condition
+
 
 [License]: https://img.shields.io/github/license/fincubator/control_center
-[LICENSE.md]: LICENSE
+[LICENSE]: LICENSE
 [CONTRIBUTING.md]: CONTRIBUTING.md
 [Telegram]: https://img.shields.io/badge/Telegram-fincubator-blue?logo=telegram
 [Telegram join]: https://t.me/fincubator
@@ -69,3 +53,5 @@ Go to http://0.0.0.0:8080/api/v1/assets/ and check it out:
 [Docker Compose]: https://www.docker.com
 [Booker]: https://github.com/fincubator/booker
 [BitSharesUI]: https://github.com/bitshares/bitshares-ui
+[Code style: black]: https://img.shields.io/badge/code%20style-black-000000.svg
+[black code style]: https://github.com/psf/black
