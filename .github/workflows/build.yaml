@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    tags:
+      - '!refs/tags/*'
+    branches:
+      - '*'
+
+jobs:
+  run_tests:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Create test env
+        run: cp .env.example .env
+
+      - name: Build database container
+        run: docker-compose run -d postgres
+
+      - name: Build the stack
+        run: docker-compose up --build -d
+
+      - name: Install dev packs
+        run: docker-compose exec -T gw_api pipenv install --dev
+
+      - name: Run tests
+        run: docker-compose exec -T gw_api pipenv run pytest
